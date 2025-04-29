@@ -1,47 +1,69 @@
-import { Dropdown, Button, Image } from "antd";
+import { Dropdown, Button } from "antd";
 import { UserOutlined, TranslationOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-import { ASSETS } from "../../assets/assets";
+import { useAuth } from "../../context/AuthContext";
 import ProfileMenu from "../Profile/ProfileMenu";
 import LanguageDropDown from "../Language/LanguageDropDown";
-import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
+
+  const handleLoginClick = () => {
+    // Handle login action
+    console.log("Login clicked");
+  };
+
+  const handleRegisterClick = () => {
+    // Handle register action
+    console.log("Register clicked");
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "8px 16px",
-        backgroundColor: "#fff",
-        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Image src={ASSETS.LOGO} alt="App Logo" width={200} preview={false} />
-      </div>
+    <header className="sticky top-0 z-50 bg-white shadow-sm px-4 md:px-8 py-4 flex justify-between items-center">
+      <div className="logo text-2xl font-bold text-primary-600">Flemme</div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-        <Dropdown overlay={<LanguageDropDown />} placement="bottomRight">
-          <Button icon={<TranslationOutlined />}>{t("language")}</Button>
-        </Dropdown>
-
-        {user && (
-          <Dropdown
-            overlay={<ProfileMenu />}
-            placement="bottomRight"
-            trigger={["click"]}
-          >
-            <Button style={{ border: "none", background: "transparent" }}>
-              <UserOutlined style={{ fontSize: "20px", color: "#1890ff" }} />
-            </Button>
-          </Dropdown>
+      <div className="header-actions flex items-center gap-3">
+        {user ? (
+          <>
+            <Dropdown overlay={<LanguageDropDown />} placement="bottomRight">
+              <Button
+                icon={<TranslationOutlined />}
+                className="flex items-center"
+              >
+                {t("language")}
+              </Button>
+            </Dropdown>
+            <Dropdown
+              overlay={<ProfileMenu />}
+              placement="bottomRight"
+              trigger={["click"]}
+            >
+              <Button className="border-none bg-transparent">
+                <UserOutlined className="text-xl text-blue-500" />
+              </Button>
+            </Dropdown>
+          </>
+        ) : (
+          <>
+            <button className="btn-text" onClick={handleLoginClick}>
+              {t("login", "Connexion")}
+            </button>
+            <button className="btn-primary" onClick={handleRegisterClick}>
+              {t("register", "S'inscrire")}
+            </button>
+            <Dropdown overlay={<LanguageDropDown />} placement="bottomRight">
+              <Button
+                icon={<TranslationOutlined />}
+                className="flex items-center"
+              >
+                {t("language")}
+              </Button>
+            </Dropdown>
+          </>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 

@@ -43,16 +43,7 @@ const App = () => {
     <Router>
       <ConfigProvider direction={direction}>
         <Layout>
-          <Header
-            style={{
-              padding: "0 0px",
-              background: "#fff",
-              borderBottom: "1px solid #e8e8e8",
-            }}
-          >
             <Navbar />
-          </Header>
-
           <Layout>
           {user && (
               <Sider width={250} style={{ background: "#f8f9fa" }}>
