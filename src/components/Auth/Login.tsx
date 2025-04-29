@@ -68,7 +68,7 @@ const Login = () => {
           type="primary"
           htmlType="submit"
           loading={loading}
-          style={{ backgroundColor: "#5073fa", borderColor: "#5073fa", width: '100%' }}
+          style={{ backgroundColor: "var(--primary-600)", borderColor: "var(--primary-600)", width: '100%' }}
           size="large"
         >
           {t("submit")}

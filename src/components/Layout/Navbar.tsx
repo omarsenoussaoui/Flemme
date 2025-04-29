@@ -4,19 +4,19 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../../context/AuthContext";
 import ProfileMenu from "../Profile/ProfileMenu";
 import LanguageDropDown from "../Language/LanguageDropDown";
+import { useNavigate } from "react-router-dom"; // ⬅️ Import navigate hook
 
 const Navbar = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
+  const navigate = useNavigate(); // ⬅️ Initialize navigate
 
   const handleLoginClick = () => {
-    // Handle login action
-    console.log("Login clicked");
+    navigate("/login"); // ⬅️ Navigate to login
   };
 
   const handleRegisterClick = () => {
-    // Handle register action
-    console.log("Register clicked");
+    navigate("/register"); // ⬅️ Navigate to register
   };
 
   return (

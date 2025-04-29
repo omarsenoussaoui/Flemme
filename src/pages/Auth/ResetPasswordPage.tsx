@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ResetPasswordForm from "../../components/Auth/ResetPasswordForm";
-import { Row, Col, Card,Image } from "antd";
+import { Row, Col, Card, Image } from "antd";
 import { t } from "i18next";
 import { ASSETS } from "../../assets/assets";
 
@@ -25,12 +25,18 @@ const ResetPasswordPage: React.FC = () => {
       <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
         <Col xs={24} sm={12} md={8} lg={6}>
           <div style={{ textAlign: "center", marginBottom: "24px" }}>
-            <Image
+            {/* <Image
               src={ASSETS.LOGO}
               alt="App Logo"
               width={300}
               preview={false}
-            />
+            /> */}
+            <div
+              className="logo text-2xl font-bold text-primary-600"
+              style={{ fontSize: "90px", fontWeight: "bold" }}
+            >
+              Flemme
+            </div>
           </div>
           <Card title={t("resetPassword")} bordered={false}>
             {email && token ? (
